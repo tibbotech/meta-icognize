@@ -1,0 +1,72 @@
+--- /dev/null	2023-05-11 21:30:56.679931079 +0300
++++ a/arch/arm/boot/dts/sp7021-icognize.dts	2023-05-30 04:22:21.098084061 +0300
+@@ -0,0 +1,69 @@
++/*
++ * Linux TPP3 Gen 2 - LTPP3g2 base board definition
++ * Copyright (C) 2020 Tibbo Tech. - http://tibbo.com/tps/
++ * License: GPLv2 or later
++ */
++/dts-v1/;
++
++#include "sp7021-ltpp3g2revD.dtsi"
++
++/ {
++ model = "SP7021 TPPs3 Gen 2 iCOGNIZE";
++ clocks {
++
++ };
++};
++
++&l2sw {  mode = <1>;  };
++/* 16 (hw I2C) on s1 */
++&i2cm0 {  status = "okay";
++  pinctrl-names = "default";
++  pinctrl-0 = <&pins_i2cm0>;
++  tps-sock = "s1";
++};
++/* 31 (hw I2C) on s5 */
++&i2cm1 {  status = "disabled";
++  pinctrl-names = "default";
++  pinctrl-0 = <&pins_i2cm1>;
++  tps-sock = "s5";
++};
++
++
++&pctl {
++/* 16 (I2C) on s1 */
++ pins_i2cm0: pins_i2cm0 {
++ sppctl,pins = <
++      SPPCTL_IOPAD(8,SPPCTL_PCTL_G_PMUX,MUXF_I2CM0_CLK,0)
++      SPPCTL_IOPAD(9,SPPCTL_PCTL_G_PMUX,MUXF_I2CM0_DAT,0)
++    >;
++ };
++/* 31 (I2C) on s5 */
++ pins_i2cm1: pins_i2cm1 {
++ sppctl,pins = <
++      SPPCTL_IOPAD(16,SPPCTL_PCTL_G_PMUX,MUXF_I2CM1_CLK,0)
++      SPPCTL_IOPAD(17,SPPCTL_PCTL_G_PMUX,MUXF_I2CM1_DAT,0)
++    >;
++ };
++ // added manually
++ pins_w1: pins_w1 {
++ sppctl,pins = <
++      SPPCTL_IOPAD(20,SPPCTL_PCTL_G_GPIO,0,SPPCTL_PCTL_L_ONV|SPPCTL_PCTL_L_ODR)
++    >;
++ };
++ // added manually /
++
++};
++
++/ {
++    soc@B {
++ // added manually
++	onewire {
++		compatible = "w1-gpio";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pins_w1>;
++		gpios = <&pctl 20 0>;
++		linux,open-drain;
++	};
++ // added manually /
++    };
++};
