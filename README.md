@@ -38,12 +38,12 @@ MACHINE=tppg2 bitbake-layers add-layer ../layers/meta-icognize
 
 ### Append to your local.conf
 ```
-ISP_VAR_DTB = "sp7021-icognize.dtb"
+nothing
 ```
 
 ### Building
 ```
-MACHINE=tppg2 bitbake mc:tppg2:img-tps-icognize
+MACHINE=tppg2-icogn bitbake mc:tppg2-icogn:img-tps-icognize
 ```
 ISPBOOOT.BIN will be placed at BUILDDIR/deploy/images/tppg2/emmc0/
 
