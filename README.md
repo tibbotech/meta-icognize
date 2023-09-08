@@ -43,7 +43,7 @@ nothing
 
 ### Building
 ```
-MACHINE=tppg2-icogn bitbake mc:tppg2-icogn:img-tps-icognize
+MACHINE=tppg2-icog bitbake mc:tppg2-icog:img-tps-icognize
 ```
 ISPBOOOT.BIN will be placed at BUILDDIR/deploy/images/tppg2/emmc0/
 
