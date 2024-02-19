@@ -47,6 +47,10 @@ MACHINE=tppg2-icog bitbake mc:tppg2-icog:img-tps-icognize
 ```
 ISPBOOOT.BIN will be placed at BUILDDIR/deploy/images/tppg2/emmc0/
 
+### Notes
+
+>= Nanbield requires kernel 5.10. Fix it.
+
 ## Maintainers
 
 * Dvorkin Dmitry `<dvorkin at tibbo.com>`
